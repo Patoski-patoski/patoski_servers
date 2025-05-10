@@ -11,10 +11,17 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+
+const allowedOrigins = [
+    'https://patrick-patoski.vercel.app',
+    'http://localhost:3000',
+];
+
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true
+    origin: allowedOrigins,
+    credentials: true,
 }));
+
 
 app.post('/api/contact', async (req, res) => { 
     try {
