@@ -1,4 +1,4 @@
-//service/src/index.ts
+// server/src/index.ts
 
 import express from 'express'
 import cors from 'cors'
@@ -14,7 +14,7 @@ app.use(express.json());
 
 const allowedOrigins = [
     'https://patrick-patoski.vercel.app',
-    'http://localhost:3000',
+    'http://localhost:5173',
 ];
 
 app.use(cors({
