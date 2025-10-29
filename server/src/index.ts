@@ -14,7 +14,11 @@ app.use(express.json());
 
 const allowedOrigins = [
     'https://patrick-patoski.vercel.app',
+<<<<<<< HEAD
     process.env.LOCALHOST,
+=======
+    'http://localhost:5173',
+>>>>>>> 9196c76cd5c06213be40d50b11c6f32f4650be36
 ];
 
 app.use(cors({
