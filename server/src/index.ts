@@ -8,13 +8,13 @@ import nodemailer from 'nodemailer'
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.use(express.json());
 
 const allowedOrigins = [
     'https://patrick-patoski.vercel.app',
-    'http://localhost:5173',
+    process.env.LOCALHOST,
 ];
 
 app.use(cors({
@@ -28,11 +28,17 @@ app.post('/api/contact', async (req, res) => {
         const { name, email, subject, message } = req.body;
 
         if (!name || !email || !subject || !message) {
-            return res.status(404).json({
+            return res.status(400).json({
                 success: false,
                 message: "All fields are required"
             });
         }
+	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	if (!emailRegex.test(email)) {
+	   return res.status(400).json({
+	   success: false,
+           message: "Invalid email format"});
+	}
 
         // CReate an email transporter
         const transporter = nodemailer.createTransport({
@@ -50,7 +56,7 @@ app.post('/api/contact', async (req, res) => {
             // TO: YOUR email where you want to receive messages
             to: process.env.RECIPIENT_EMAIL || 'codesbypatrick@gmail.com',
 
-            // REPLY-TO: The visitor's email (so you can reply directly to them)
+            // REPLY-TO: The visitor's email
             replyTo: email,
 
             subject: `Portfolio Contact: ${subject}`,
