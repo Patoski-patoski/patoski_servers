@@ -14,11 +14,7 @@ app.use(express.json());
 
 const allowedOrigins = [
     'https://patrick-patoski.vercel.app',
-<<<<<<< HEAD
-    process.env.LOCALHOST,
-=======
-    'http://localhost:5173',
->>>>>>> 9196c76cd5c06213be40d50b11c6f32f4650be36
+     process.env.LOCALHOST,
 ];
 
 app.use(cors({
@@ -39,9 +35,9 @@ app.post('/api/contact', async (req, res) => {
         }
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	if (!emailRegex.test(email)) {
-	   return res.status(400).json({
-	   success: false,
-           message: "Invalid email format"});
+		return res.status(400).json({
+	    success: false,
+        message: "Invalid email format"});
 	}
 
         // CReate an email transporter
@@ -58,7 +54,7 @@ app.post('/api/contact', async (req, res) => {
             from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
 
             // TO: YOUR email where you want to receive messages
-            to: process.env.RECIPIENT_EMAIL || 'codesbypatrick@gmail.com',
+            to: process.env.RECIPIENT_EMAIL,
 
             // REPLY-TO: The visitor's email
             replyTo: email,
@@ -106,3 +102,4 @@ app.get(['/', 'health'], (_, res) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
