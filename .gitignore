@@ -165,3 +165,8 @@ dist
 .env*
 !.env.example
 .wrangler/
+
+
+cloudflare.txt
+dummy.ts
+error.log

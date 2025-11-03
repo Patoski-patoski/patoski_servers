@@ -5,8 +5,15 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "workers-cloudflare",
-	"main": "src/index.ts",
+	"main": "src/server.ts",
 	"compatibility_date": "2025-08-31",
+	"kv_namespaces": [
+		{
+			"binding": "GEMINI_KV",
+			"id": "de971c4199ac4c31a147da78ce209d5e",
+			"preview_id": "de971c4199ac4c31a147da78ce209d5e"
+		}
+	],
 	"observability": {
 		"enabled": true
 	}

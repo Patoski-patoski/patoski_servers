@@ -5,4 +5,4 @@
 	},
 	"include": ["./**/*.ts", "../worker-configuration.d.ts"],
 	"exclude": []
-}
+} 
